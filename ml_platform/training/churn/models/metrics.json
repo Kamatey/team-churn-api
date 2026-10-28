@@ -1,0 +1,10 @@
+{
+  "dataset_id": 563,
+  "test_size": 0.2,
+  "random_state": 42,
+  "accuracy": 0.8412698412698413,
+  "churn_precision": 0.49707602339181284,
+  "churn_recall": 0.8585858585858586,
+  "churn_f1": 0.6296296296296297,
+  "roc_auc": 0.9243090034050486
+}
