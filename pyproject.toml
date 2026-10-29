@@ -10,6 +10,7 @@ dependencies = [
     "scikit-learn>=1.5.0",
     "joblib>=1.4.0",
     "ucimlrepo>=0.0.7",
+    "pydantic>=2.14.1",
 ]
 
 [dependency-groups]
@@ -34,3 +35,4 @@ select = ["E", "F", "I", "UP", "B", "SIM", "PD", "NPY", "RUF"]
 
 [tool.pytest.ini_options]
 testpaths = ["production_app/tests"]
+pythonpath = ["."]
