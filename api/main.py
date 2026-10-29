@@ -1,31 +1,16 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-
 APP_DIR = Path(__file__).resolve().parents[1]
 
-MODEL_PATH = (
-    APP_DIR
-    / "ml_platform"
-    / "training"
-    / "churn"
-    / "models"
-    / "churn_pipeline.joblib"
-)
+MODEL_PATH = APP_DIR / "ml_platform" / "training" / "churn" / "models" / "churn_pipeline.joblib"
 
-FEATURES_PATH = (
-    APP_DIR
-    / "ml_platform"
-    / "training"
-    / "churn"
-    / "models"
-    / "feature_names.json"
-)
+FEATURES_PATH = APP_DIR / "ml_platform" / "training" / "churn" / "models" / "feature_names.json"
 
 
 app = FastAPI(
@@ -59,14 +44,11 @@ class PredictionResponse(BaseModel):
 
 if not MODEL_PATH.exists():
     raise RuntimeError(
-        f"Model artifact not found at {MODEL_PATH}. "
-        "Run the Week 1 anchor training step first."
+        f"Model artifact not found at {MODEL_PATH}. Run the Week 1 anchor training step first."
     )
 
 if not FEATURES_PATH.exists():
-    raise RuntimeError(
-        f"Feature metadata not found at {FEATURES_PATH}."
-    )
+    raise RuntimeError(f"Feature metadata not found at {FEATURES_PATH}.")
 
 
 model = joblib.load(MODEL_PATH)
@@ -111,9 +93,7 @@ def predict(
         )
 
         prediction = int(model.predict(row)[0])
-        probability = float(
-            model.predict_proba(row)[0][1]
-        )
+        probability = float(model.predict_proba(row)[0][1])
 
         return PredictionResponse(
             prediction=prediction,

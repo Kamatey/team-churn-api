@@ -35,3 +35,4 @@ select = ["E", "F", "I", "UP", "B", "SIM", "PD", "NPY", "RUF"]
 
 [tool.pytest.ini_options]
 testpaths = ["production_app/tests"]
+pythonpath = ["."]
